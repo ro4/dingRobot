@@ -1,0 +1,19 @@
+{
+    "name": "ro4/ding-robot",
+    "description": "A php library for ding ding group robot",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Fan",
+            "email": "thefrp@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "DingRobot\\": "src/DingRobot/"
+        }
+    }
+}
