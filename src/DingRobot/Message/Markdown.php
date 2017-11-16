@@ -8,10 +8,10 @@ class Markdown extends Base
     {
         parent::__construct();
         $this->body['title'] = $title;
-        $this->obj           = 'markdown';
+        $this->bodyName      = 'markdown';
     }
 
-    function getArray()
+    function getBody()
     {
         return $this->body;
     }

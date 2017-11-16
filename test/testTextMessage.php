@@ -7,7 +7,7 @@ use DingRobot\Message\Text;
 //$msg = new Text('nihao');
 //$msg->send();
 
-Text::content('nihao')->send();
+Text::content('nihao')->at()->send();
 
 //$link = new \DingRobot\Message\Link('title');
 //

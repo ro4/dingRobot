@@ -8,10 +8,10 @@ class Text extends Base
     {
         parent::__construct();
         $this->body['content'] = $content;
-        $this->obj             = 'text';
+        $this->bodyName        = 'text';
     }
 
-    function getArray()
+    function getBody()
     {
         return $this->body;
     }

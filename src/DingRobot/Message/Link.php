@@ -8,10 +8,10 @@ class Link extends Base
     {
         parent::__construct();
         $this->title = $title;
-        $this->obj   = 'link';
+        $this->bodyName   = 'link';
     }
 
-    function getArray()
+    function getBody()
     {
         return $this->body;
     }
