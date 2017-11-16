@@ -11,12 +11,12 @@ class Markdown extends Base
         $this->bodyName      = 'markdown';
     }
 
-    function getBody()
+    protected function getBody()
     {
         return $this->body;
     }
 
-    function bodyFields()
+    protected function bodyFields()
     {
         return ['title', 'text'];
     }

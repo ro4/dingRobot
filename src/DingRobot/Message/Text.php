@@ -11,12 +11,12 @@ class Text extends Base
         $this->bodyName        = 'text';
     }
 
-    function getBody()
+    protected function getBody()
     {
         return $this->body;
     }
 
-    function bodyFields()
+    protected function bodyFields()
     {
         return ['content'];
     }

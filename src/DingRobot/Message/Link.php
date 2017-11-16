@@ -7,16 +7,16 @@ class Link extends Base
     public function __construct($title = '')
     {
         parent::__construct();
-        $this->title = $title;
-        $this->bodyName   = 'link';
+        $this->title    = $title;
+        $this->bodyName = 'link';
     }
 
-    function getBody()
+    protected function getBody()
     {
         return $this->body;
     }
 
-    function bodyFields()
+    protected function bodyFields()
     {
         return ['title', 'text', 'picUrl', 'messageUrl'];
     }

@@ -7,7 +7,15 @@ use DingRobot\Message\Text;
 //$msg = new Text('nihao');
 //$msg->send();
 
-Text::content('nihao')->at()->send();
+//Text::content('nihao')->at()->send();
+
+$link = [
+    'title' => 'test',
+    'messageURL' => 'test',
+    'picURL' => 'test',
+];
+
+\DingRobot\Message\FeedCard::links([$link])->addLink($link)->send();
 
 //$link = new \DingRobot\Message\Link('title');
 //

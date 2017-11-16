@@ -16,7 +16,7 @@ abstract class Base implements \JsonSerializable
         $this->body = array_fill_keys(static::bodyFields(), '');
     }
 
-    function jsonSerialize()
+    public function jsonSerialize()
     {
         return [
             'msgtype'       => $this->bodyName,
@@ -24,9 +24,9 @@ abstract class Base implements \JsonSerializable
         ] + $this->getAt() ?: [];
     }
 
-    abstract function getBody();
+    abstract protected function getBody();
 
-    abstract function bodyFields();
+    abstract protected function bodyFields();
 
     public function send()
     {
@@ -51,7 +51,7 @@ abstract class Base implements \JsonSerializable
         return (new static)->$name(...$args);
     }
 
-    function request_by_curl($remote_server, $post_string)
+    private function request_by_curl($remote_server, $post_string)
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $remote_server);

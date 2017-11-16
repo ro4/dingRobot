@@ -10,7 +10,7 @@ trait At
     public function at($someone = null)
     {
         if (is_string($someone) || is_numeric($someone)) {
-            $this->mobiles[] = $someone;
+            $this->mobiles[] = (string)$someone;
         } elseif (is_array($someone)) {
             $this->atMobiles = array_merge($this->mobiles, $someone);
         }
@@ -29,7 +29,7 @@ trait At
         return $this;
     }
 
-    public function getAt()
+    protected function getAt()
     {
         if ($this->mobiles || $this->all) {
             return [
