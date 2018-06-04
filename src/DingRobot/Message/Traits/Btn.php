@@ -8,6 +8,11 @@ trait Btn
 
     protected static $btnFields = ['title', 'actionURL'];
 
+    public function btns($btns)
+    {
+        $this->btns = $btns;
+    }
+
     public function addbtn($btn = [])
     {
         $this->validatebtn($btn);

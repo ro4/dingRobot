@@ -8,6 +8,11 @@ trait Link
 
     protected static $linkFields = ['title', 'messageURL', 'picURL'];
 
+    public function links($links)
+    {
+        $this->links = $links;
+    }
+
     public function addLink($link = [])
     {
         $this->validateLink($link);
