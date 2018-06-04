@@ -10,7 +10,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "davidbadura/markdown-builder": "dev-master"
+    },
     "autoload": {
         "psr-4": {
             "DingRobot\\": "src/DingRobot/"
