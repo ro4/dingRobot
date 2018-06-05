@@ -4,6 +4,11 @@ namespace DingRobot\Message;
 
 use DingRobot\Message\Traits\Link;
 
+/**
+ * FeedCard
+ *
+ * @package DingRobot\Message
+ */
 class FeedCard extends Base
 {
     use Link;
@@ -31,6 +36,6 @@ class FeedCard extends Base
 
     protected function bodyFields()
     {
-        return ['links'];
+        return [];
     }
 }

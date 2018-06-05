@@ -2,23 +2,6 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
-use DingRobot\Message\Text;
+use DingRobot\Ding;
 
-$msg = new Text('nihao');
-$msg->send();
-
-Text::content('nihao')->at()->send();
-
-$link = [
-    'title' => 'test',
-    'messageURL' => 'test',
-    'picURL' => 'test',
-];
-
-\DingRobot\Message\FeedCard::links([$link])->addLink($link)->send();
-
-$link = new \DingRobot\Message\Link('title');
-
-$link->text('233')->title('2333')->picUrl('http://233.com')->send();
-
-$link->send();
+Ding::Text('nihao')->addContent('zuijinzenmenyang')->send();

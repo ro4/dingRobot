@@ -7,9 +7,6 @@ use DingRobot\Message\Traits\Btn;
 /**
  * ActionCard
  *
- * @method static ActionCard title($title)
- * @method static ActionCard text($markdownText)
- * @method static ActionCard singleURL($singleUrl)
  * @method ActionCard title($title)
  * @method ActionCard text($markdownText)
  * @method ActionCard singleURL($singleUrl)

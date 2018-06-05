@@ -28,11 +28,9 @@ abstract class Base implements \JsonSerializable
 
     abstract protected function bodyFields();
 
-    public function send()
+    public function send($address = '')
     {
-        var_dump(json_encode(static::jsonSerialize()));
-        exit;
-        $this->request_by_curl('fsadfdsa', json_encode(static::jsonSerialize()));
+        $this->request_by_curl($address, json_encode(static::jsonSerialize()));
     }
 
     public function __call($name, $args)

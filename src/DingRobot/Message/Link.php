@@ -2,6 +2,16 @@
 
 namespace DingRobot\Message;
 
+/**
+ * Link
+ *
+ * @method Link title($title)
+ * @method Link text($markdownText)
+ * @method Link picUrl($picUrl)
+ * @method Link messageUrl($messageUrl)
+ *
+ * @package DingRobot\Message
+ */
 class Link extends Base
 {
     public function __construct($title = '')

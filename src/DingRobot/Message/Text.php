@@ -2,8 +2,16 @@
 
 namespace DingRobot\Message;
 
+/**
+ * Text
+ *
+ * @method Text content($content)
+ *
+ * @package DingRobot\Message
+ */
 class Text extends Base
 {
+
     public function __construct($content = '')
     {
         parent::__construct();
@@ -19,5 +27,12 @@ class Text extends Base
     protected function bodyFields()
     {
         return ['content'];
+    }
+
+    public function addContent($content = '')
+    {
+        $this->body['content'] .= $content;
+
+        return $this;
     }
 }

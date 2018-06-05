@@ -2,6 +2,14 @@
 
 namespace DingRobot\Message;
 
+/**
+ * Markdown
+ *
+ * @method Markdown title($title)
+ * @method Markdown text($markdownText)
+ *
+ * @package DingRobot\Message
+ */
 class Markdown extends Base
 {
     public function __construct($title = '')
