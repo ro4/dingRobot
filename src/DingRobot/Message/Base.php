@@ -4,6 +4,11 @@ namespace DingRobot\Message;
 
 use DingRobot\Message\Traits\At;
 
+/**
+ * Base Class
+ *
+ * @package DingRobot\Message
+ */
 abstract class Base implements \JsonSerializable
 {
     use At;
@@ -28,8 +33,18 @@ abstract class Base implements \JsonSerializable
 
     abstract protected function bodyFields();
 
+    /**
+     * 发送
+     * send
+     *
+     * @param string $address 接口地址
+     *
+     * @return void
+     */
     public function send($address = '')
     {
+        var_dump(['address' => $address, 'json' => json_encode(static::jsonSerialize())]);
+        exit;
         $this->request_by_curl($address, json_encode(static::jsonSerialize()));
     }
 

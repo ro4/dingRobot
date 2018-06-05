@@ -10,27 +10,27 @@ use DingRobot\Message\Text;
 
 class Ding
 {
-    public static function ActionCard($title = '')
+    public static function actionCard($title = '')
     {
         return new ActionCard($title);
     }
 
-    public static function FeedCard($links = null)
+    public static function feedCard($links = null)
     {
         return new FeedCard($links);
     }
 
-    public static function Link($title = '')
+    public static function link($title = '')
     {
         return new Link($title);
     }
 
-    public static function Markdown($title = '')
+    public static function markdown($title = '')
     {
         return new Markdown($title);
     }
 
-    public static function Text($content = '')
+    public static function text($content = '')
     {
         return new Text($content);
     }

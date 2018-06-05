@@ -1,11 +1,12 @@
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
-use DingRobot\Message\ActionCard;
-use DavidBadura\MarkdownBuilder\MarkdownBuilder;
+use DingRobot\Ding;
 
-$md = new MarkdownBuilder();
-$md->h1('nihao')->code('echo ', 'php');
-
-ActionCard::title('test')->text($md->getMarkdown())->showAvatar()->send();
+Ding::actionCard('test')->singleURL('http://baidu.com')->text('test')->btns([
+    [
+        'title' => 'click me',
+        'actionURL' => 'http://google.com'
+    ]
+])->at('1222')->send('tyttt');

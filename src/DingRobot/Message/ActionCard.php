@@ -17,13 +17,27 @@ class ActionCard extends Base
 {
     use Btn;
 
-    // 0-正常发消息者头像,1-隐藏发消息者头像
+    /**
+     * 隐藏发消息者头像
+     * hide sender avatar
+     */
     const AVATAR_HIDE = '1';
+
+    /**
+     * 显示发消息者头像
+     * show sender avatar
+     */
     const AVATAR_SHOW = '0';
 
-    // 0-按钮竖直排列，1-按钮横向排列
+    /**
+     * 按钮横向排列
+     */
     const BTN_ORIENTATION_HORIZONTAL = '1';
-    const BTN_ORIENTATION_VERTICAL   = '0';
+
+    /**
+     * 按钮竖直排列
+     */
+    const BTN_ORIENTATION_VERTICAL = '0';
 
     public function __construct($title = '')
     {
@@ -36,7 +50,7 @@ class ActionCard extends Base
     {
         $this->body['btns'] = $this->btns;
         foreach ($this->body['btns'] as $btn) {
-            $this->validatebtn($btn);
+            $this->validateBtn($btn);
         }
         return $this->body;
     }
@@ -46,6 +60,12 @@ class ActionCard extends Base
         return ['title', 'text', 'singleURL'];
     }
 
+    /**
+     * hide sender avatar
+     * 隐藏发送者头像
+     *
+     * @return $this
+     */
     public function hideAvatar()
     {
         $this->body['hideAvatar'] = self::AVATAR_HIDE;
@@ -53,6 +73,12 @@ class ActionCard extends Base
         return $this;
     }
 
+    /**
+     * show sender avatar
+     * 显示发送者头像
+     *
+     * @return $this
+     */
     public function showAvatar()
     {
         $this->body['hideAvatar'] = self::AVATAR_SHOW;
@@ -60,6 +86,12 @@ class ActionCard extends Base
         return $this;
     }
 
+    /**
+     * 设置按钮横向排列
+     * set button as horizontal
+     *
+     * @return $this
+     */
     public function btnOrientationHorizontal()
     {
         $this->body['btnOrientation'] = self::BTN_ORIENTATION_HORIZONTAL;
@@ -67,6 +99,12 @@ class ActionCard extends Base
         return $this;
     }
 
+    /**
+     * 设置按钮纵向排列
+     * set button as vertical
+     *
+     * @return $this
+     */
     public function btnOrientationVertical()
     {
         $this->body['btnOrientation'] = self::BTN_ORIENTATION_VERTICAL;

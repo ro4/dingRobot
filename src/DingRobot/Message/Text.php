@@ -29,7 +29,15 @@ class Text extends Base
         return ['content'];
     }
 
-    public function addContent($content = '')
+    /**
+     * append content
+     * 追加内容
+     *
+     * @param string $content
+     *
+     * @return $this
+     */
+    public function appendContent($content = '')
     {
         $this->body['content'] .= $content;
 
