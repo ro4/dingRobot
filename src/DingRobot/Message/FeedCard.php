@@ -18,9 +18,6 @@ class FeedCard extends Base
         parent::__construct();
         $this->bodyName = 'feedCard';
         if ($links) {
-            foreach ($this->body['links'] as $link) {
-                $this->validateLink($link);
-            }
             $this->body['links'] = $links;
         }
     }

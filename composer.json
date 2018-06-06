@@ -17,5 +17,8 @@
         "psr-4": {
             "DingRobot\\": "src/DingRobot/"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.5"
     }
 }
