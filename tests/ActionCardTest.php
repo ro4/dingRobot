@@ -11,14 +11,9 @@ class ActionCardTest extends TestCase
         $stub->method('request')->willReturn('200');
 
         $this->assertEquals('200', \DingRobot\Ding::actionCard('233')->btns([
-            [
-                'title'     => 'click',
-                'actionURL' => 'www.baidu.com'
-            ]
-        ])->appendBtn([
-            'title'     => 'click',
-            'actionURL' => 'www.baidu.com'
-        ])->showAvatar()->hideAvatar()->btnOrientationHorizontal()->btnOrientationVertical()
+            make_btn('click', 'www.google.com')
+        ])->appendBtn(make_btn('click', 'www.google.com'))->showAvatar()->hideAvatar()
+            ->btnOrientationHorizontal()->btnOrientationVertical()
             ->at(['122', '233'])->at('133')
             ->atAll()->notAtAll()
             ->send('add', $stub));
@@ -30,18 +25,13 @@ class ActionCardTest extends TestCase
 
         $stub->method('request')->willReturn('200');
 
-        $this->assertEquals('200', \DingRobot\Message\ActionCard::title('233')->btns([
-            [
-                'title'     => 'click',
-                'actionURL' => 'www.baidu.com'
-            ]
-        ])->appendBtn([
-            'title'     => 'click',
-            'actionURL' => 'www.baidu.com'
-        ])->showAvatar()->hideAvatar()->btnOrientationHorizontal()->btnOrientationVertical()
-            ->at(['122', '233'])->at('133')
-            ->atAll()->notAtAll()
-            ->send('add', $stub));
+        $this->assertEquals('200',
+            \DingRobot\Message\ActionCard::title('233')->btns([make_btn('click', 'www.google.com')])
+                ->appendBtn(make_btn('click', 'www.google.com'))->showAvatar()->hideAvatar()
+                ->btnOrientationHorizontal()->btnOrientationVertical()
+                ->at(['122', '233'])->at('133')
+                ->atAll()->notAtAll()
+                ->send('add', $stub));
     }
 
     public function testBtnException()
@@ -52,14 +42,9 @@ class ActionCardTest extends TestCase
 
         try {
             \DingRobot\Ding::actionCard('233')->btns([
-                [
-                    'title'     => 'click',
-                    'actionURL' => 'www.baidu.com'
-                ]
-            ])->appendBtn([
-                'title'     => 'click',
-                'actinURL' => 'www.baidu.com'
-            ])->showAvatar()->hideAvatar()->btnOrientationHorizontal()->btnOrientationVertical()
+                make_btn('click', 'www.google.com')
+            ])->appendBtn(['ttt' => '122', 'test'])->showAvatar()->hideAvatar()
+                ->btnOrientationHorizontal()->btnOrientationVertical()
                 ->at(['122', '233'])->at('133')
                 ->atAll()->notAtAll()
                 ->send('add', $stub);
@@ -69,11 +54,9 @@ class ActionCardTest extends TestCase
 
         try {
             \DingRobot\Ding::actionCard('233')->btns([
-                [
-                    'title'     => 'click',
-                    'actionURL' => 'www.baidu.com'
-                ]
-            ])->appendBtn('btn')->showAvatar()->hideAvatar()->btnOrientationHorizontal()->btnOrientationVertical()
+                make_btn('click', 'www.google.com')
+            ])->appendBtn('btn')->showAvatar()->hideAvatar()->btnOrientationHorizontal()
+                ->btnOrientationVertical()
                 ->at(['122', '233'])->at('133')
                 ->atAll()->notAtAll()
                 ->send('add', $stub);
