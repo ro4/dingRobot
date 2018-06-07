@@ -43,4 +43,42 @@ class ActionCardTest extends TestCase
             ->atAll()->notAtAll()
             ->send('add', $stub));
     }
+
+    public function testBtnException()
+    {
+        $stub = $this->createMock(\DingRobot\Requester\CurlRequester::class);
+
+        $stub->method('request')->willReturn('200');
+
+        try {
+            \DingRobot\Ding::actionCard('233')->btns([
+                [
+                    'title'     => 'click',
+                    'actionURL' => 'www.baidu.com'
+                ]
+            ])->appendBtn([
+                'title'     => 'click',
+                'actinURL' => 'www.baidu.com'
+            ])->showAvatar()->hideAvatar()->btnOrientationHorizontal()->btnOrientationVertical()
+                ->at(['122', '233'])->at('133')
+                ->atAll()->notAtAll()
+                ->send('add', $stub);
+        } catch (\Exception $e) {
+            $this->assertInstanceOf(\InvalidArgumentException::class, $e);
+        }
+
+        try {
+            \DingRobot\Ding::actionCard('233')->btns([
+                [
+                    'title'     => 'click',
+                    'actionURL' => 'www.baidu.com'
+                ]
+            ])->appendBtn('btn')->showAvatar()->hideAvatar()->btnOrientationHorizontal()->btnOrientationVertical()
+                ->at(['122', '233'])->at('133')
+                ->atAll()->notAtAll()
+                ->send('add', $stub);
+        } catch (\Exception $e) {
+            $this->assertInstanceOf(\InvalidArgumentException::class, $e);
+        }
+    }
 }
