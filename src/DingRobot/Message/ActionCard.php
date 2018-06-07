@@ -42,7 +42,7 @@ class ActionCard extends Base
     public function __construct($title = '')
     {
         parent::__construct();
-        $this->title    = $title;
+        $this->title($title);
         $this->bodyName = 'actionCard';
     }
 

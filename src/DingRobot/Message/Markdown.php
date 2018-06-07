@@ -15,7 +15,7 @@ class Markdown extends Base
     public function __construct($title = '')
     {
         parent::__construct();
-        $this->body['title'] = $title;
+        $this->title($title);
         $this->bodyName      = 'markdown';
     }
 

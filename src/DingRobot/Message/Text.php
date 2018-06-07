@@ -15,8 +15,8 @@ class Text extends Base
     public function __construct($content = '')
     {
         parent::__construct();
-        $this->body['content'] = $content;
-        $this->bodyName        = 'text';
+        $this->content($content);
+        $this->bodyName = 'text';
     }
 
     protected function getBody()

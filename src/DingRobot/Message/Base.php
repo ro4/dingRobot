@@ -14,20 +14,23 @@ use DingRobot\Requester\CurlRequester;
 abstract class Base implements \JsonSerializable
 {
     use At;
+    /**
+     * @var $bodyName string
+     */
     protected $bodyName;
     protected $at;
     protected $body;
 
     public function __construct()
     {
-        $this->body = array_fill_keys(static::bodyFields(), '');
+        $this->body = array_fill_keys($this->bodyFields(), '');
     }
 
     public function jsonSerialize()
     {
         return [
             'msgtype'       => $this->bodyName,
-            $this->bodyName => static::getBody(),
+            $this->bodyName => $this->getBody(),
         ] + $this->getAt() ?: [];
     }
 
