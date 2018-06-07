@@ -15,7 +15,7 @@ abstract class Base implements \JsonSerializable
 {
     use At;
     /**
-     * @var $bodyName string
+     * @var string
      */
     protected $bodyName;
     protected $at;
@@ -50,9 +50,9 @@ abstract class Base implements \JsonSerializable
     public function send($address = '', RequesterContract $requester = null)
     {
         if ($requester) {
-            return $requester->request($address, json_encode(static::jsonSerialize()));
+            return $requester->request($address, json_encode($this->jsonSerialize()));
         } else {
-            return (new CurlRequester())->request($address, json_encode(static::jsonSerialize()));
+            return (new CurlRequester())->request($address, json_encode($this->jsonSerialize()));
         }
     }
 
