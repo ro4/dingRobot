@@ -20,7 +20,7 @@ trait At
         if (is_string($someone) || is_numeric($someone)) {
             $this->mobiles[] = (string)$someone;
         } elseif (is_array($someone)) {
-            $this->atMobiles = array_merge($this->mobiles, $someone);
+            $this->mobiles = array_merge($this->mobiles, $someone);
         }
         return $this;
     }
