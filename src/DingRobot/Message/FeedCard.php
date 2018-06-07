@@ -2,7 +2,7 @@
 
 namespace DingRobot\Message;
 
-use DingRobot\Message\Traits\Link;
+use DingRobot\Message\Traits\Link as TraitLink;
 
 /**
  * FeedCard
@@ -11,7 +11,7 @@ use DingRobot\Message\Traits\Link;
  */
 class FeedCard extends Base
 {
-    use Link;
+    use TraitLink;
 
     public function __construct($links = null)
     {

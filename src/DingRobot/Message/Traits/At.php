@@ -11,7 +11,7 @@ trait At
      * at 某人
      * at someone
      *
-     * @param string $someone
+     * @param string|array $someone
      *
      * @return $this
      */
@@ -52,7 +52,7 @@ trait At
 
     protected function getAt()
     {
-        if ($this->mobiles || $this->all) {
+        if (count($this->mobiles) || $this->all) {
             return [
                 'atMobiles' => $this->mobiles,
                 'isAtAll'   => $this->all,
