@@ -58,7 +58,7 @@ abstract class Base implements \JsonSerializable
         }
     }
 
-    protected function check($name, $required = true, $type = 'string')
+    protected function check($name, $required = true)
     {
         $content = isset($this->body[$name]) ? $this->body[$name] : null;
 
@@ -66,8 +66,8 @@ abstract class Base implements \JsonSerializable
             throw new \InvalidArgumentException("{$name} is required");
         }
 
-        if ($type == 'string' && $content && !is_string($content)) {
-            throw new \InvalidArgumentException("{$name} must be {$type}");
+        if ($content && !is_string($content)) {
+            throw new \InvalidArgumentException("{$name} must be string");
         }
     }
 
