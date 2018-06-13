@@ -10,6 +10,7 @@ class MarkdownTest extends TestCase
 
         $stub->method('request')->willReturn('200');
 
-        $this->assertEquals('200',  \DingRobot\Ding::markdown('233')->send('add', $stub));
+        $this->assertEquals('200',
+            \DingRobot\Ding::markdown('233')->text('markdown')->send('add', $stub));
     }
 }

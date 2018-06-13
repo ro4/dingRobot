@@ -10,6 +10,7 @@ use DingRobot\Message\Traits\Btn;
  * @method ActionCard title($title)
  * @method ActionCard text($markdownText)
  * @method ActionCard singleURL($singleUrl)
+ * @method ActionCard singleTitle($singleTitle)
  *
  * @package DingRobot\Message
  */
@@ -48,16 +49,35 @@ class ActionCard extends Base
 
     protected function getBody()
     {
-        $this->body['btns'] = $this->btns;
-        foreach ($this->body['btns'] as $btn) {
-            $this->validateBtn($btn);
+        if($this->btns) {
+            $this->body['btns'] = $this->btns;
+            foreach ($this->body['btns'] as $btn) {
+                $this->validateBtn($btn);
+            }
         }
         return $this->body;
     }
 
     protected function bodyFields()
     {
-        return ['title', 'text', 'singleURL'];
+        return ['title', 'text', 'singleURL', 'singleTitle'];
+    }
+
+    protected function validate()
+    {
+        $this->check('title');
+        $this->check('text');
+
+        if (isset($this->body['singleURL']) && isset($this->body['singleTitle'])) {
+            // 整体跳转ActionCard类型 btns 失效
+            $this->check('singleURL');
+            $this->check('singleTitle');
+            $this->btns([]);
+        } elseif ($this->btns) {
+            // 独立跳转ActionCard类型 校验 btn 即可
+        } else {
+            throw new \InvalidArgumentException("must have btns or single");
+        }
     }
 
     /**

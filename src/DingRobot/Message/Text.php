@@ -29,6 +29,11 @@ class Text extends Base
         return ['content'];
     }
 
+    protected function validate()
+    {
+        $this->check('content', true);
+    }
+
     /**
      * append content
      * 追加内容

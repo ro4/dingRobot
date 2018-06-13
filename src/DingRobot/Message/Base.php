@@ -23,7 +23,6 @@ abstract class Base implements \JsonSerializable
 
     public function __construct()
     {
-        $this->body = array_fill_keys($this->bodyFields(), '');
     }
 
     public function jsonSerialize()
@@ -38,17 +37,20 @@ abstract class Base implements \JsonSerializable
 
     abstract protected function bodyFields();
 
+    abstract protected function validate();
+
     /**
      * 发送
      * send
      *
-     * @param string $address 接口地址
-     * @param RequesterContract   $requester
+     * @param string            $address 接口地址
+     * @param RequesterContract $requester
      *
      * @return mixed
      */
     public function send($address = '', RequesterContract $requester = null)
     {
+        $this->validate();
         if ($requester) {
             return $requester->request($address, json_encode($this->jsonSerialize()));
         } else {
@@ -56,9 +58,23 @@ abstract class Base implements \JsonSerializable
         }
     }
 
+    protected function check($name, $required = true, $type = 'string')
+    {
+        $content = isset($this->body[$name]) ? $this->body[$name] : null;
+
+        if ($required && !$content) {
+            throw new \InvalidArgumentException("{$name} is required");
+        }
+
+        if ($type == 'string' && $content && !is_string($content)) {
+            throw new \InvalidArgumentException("{$name} must be {$type}");
+        }
+    }
+
+
     public function __call($name, $args)
     {
-        if (isset($this->body[$name])) {
+        if (in_array($name, $this->bodyFields())) {
             $this->body[$name] = isset($args[0]) ? $args[0] : '';
         } else {
             throw new \BadMethodCallException("field {$name} not found");

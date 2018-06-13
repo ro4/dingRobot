@@ -30,4 +30,12 @@ class Link extends Base
     {
         return ['title', 'text', 'picUrl', 'messageUrl'];
     }
+
+    protected function validate()
+    {
+        $this->check('title');
+        $this->check('text');
+        $this->check('picUrl', false);
+        $this->check('messageUrl');
+    }
 }

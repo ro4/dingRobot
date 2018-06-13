@@ -31,6 +31,11 @@ class FeedCard extends Base
         return $this->body;
     }
 
+    protected function validate()
+    {
+       // 校验 link 即可
+    }
+
     protected function bodyFields()
     {
         return [];

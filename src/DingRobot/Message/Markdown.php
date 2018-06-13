@@ -28,4 +28,10 @@ class Markdown extends Base
     {
         return ['title', 'text'];
     }
+
+    protected function validate()
+    {
+        $this->check('title');
+        $this->check('text');
+    }
 }
