@@ -49,7 +49,7 @@ class ActionCard extends Base
 
     protected function getBody()
     {
-        if($this->btns) {
+        if(!empty($this->btns)) {
             $this->body['btns'] = $this->btns;
             foreach ($this->body['btns'] as $btn) {
                 $this->validateBtn($btn);
@@ -73,7 +73,7 @@ class ActionCard extends Base
             $this->check('singleURL');
             $this->check('singleTitle');
             $this->btns([]);
-        } elseif ($this->btns) {
+        } elseif (!empty($this->btns)) {
             // 独立跳转ActionCard类型 校验 btn 即可
         } else {
             throw new \InvalidArgumentException("must have btns or single");
