@@ -9,13 +9,13 @@ use DingRobot\Message\Traits\Btn;
  *
  * @method ActionCard title($title)
  * @method ActionCard text($markdownText)
- * @method ActionCard singleURL($singleUrl)
- * @method ActionCard singleTitle($singleTitle)
  *
  * @package DingRobot\Message
  */
-class ActionCard extends Base
+class ActionCardBtn extends Base
 {
+    use Btn;
+
     /**
      * 隐藏发消息者头像
      * hide sender avatar
@@ -47,6 +47,11 @@ class ActionCard extends Base
 
     protected function getBody()
     {
+        if(!empty($this->btns)) {
+            $this->body['btns'] = $this->btns;
+        } else {
+            throw new \InvalidArgumentException("wrong btns");
+        }
         return $this->body;
     }
 
@@ -55,8 +60,6 @@ class ActionCard extends Base
         return [
             'title'       => ['required' => true, 'type' => 'string'],
             'text'        => ['required' => true, 'type' => 'string'],
-            'singleURL'   => ['required' => true, 'type' => 'string'],
-            'singleTitle' => ['required' => true, 'type' => 'string']
         ];
     }
 

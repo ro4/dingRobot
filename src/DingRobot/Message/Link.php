@@ -28,14 +28,11 @@ class Link extends Base
 
     protected function bodyFields()
     {
-        return ['title', 'text', 'picUrl', 'messageUrl'];
-    }
-
-    protected function validate()
-    {
-        $this->check('title');
-        $this->check('text');
-        $this->check('picUrl', false);
-        $this->check('messageUrl');
+        return [
+            'title'      => ['required' => true, 'type' => 'string'],
+            'text'       => ['required' => true, 'type' => 'string'],
+            'picUrl'     => ['required' => false, 'type' => 'string'],
+            'messageUrl' => ['required' => true, 'type' => 'string'],
+        ];
     }
 }

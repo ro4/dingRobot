@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-class ActionCardTest extends TestCase
+class ActionCardBtnTest extends TestCase
 {
     public function testSend()
     {
@@ -10,29 +10,14 @@ class ActionCardTest extends TestCase
 
         $stub->method('request')->willReturn('200');
 
-        $this->assertEquals('200', \DingRobot\Ding::actionCard('233')->text('ffff')
-            ->singleURL('url')
-            ->singleTitle('title')
+        $this->assertEquals('200', \DingRobot\Ding::actionCardBtn('233')->text('ffff')
+            ->btns([make_btn('ff', 'eee')])
+            ->appendBtn(make_btn('ee', 'dfd'))
             ->showAvatar()->hideAvatar()
             ->btnOrientationHorizontal()->btnOrientationVertical()
             ->at(['122', '233'])->at('133')
             ->atAll()->notAtAll()
             ->send('add', $stub));
-    }
-
-    public function testStaticSend()
-    {
-        $stub = $this->createMock(\DingRobot\Requester\CurlRequester::class);
-
-        $stub->method('request')->willReturn('200');
-
-        $this->assertEquals('200',
-            \DingRobot\Message\ActionCard::title('233')->text('fffff')->singleTitle('title')
-                ->singleURL('url')->showAvatar()->hideAvatar()
-                ->btnOrientationHorizontal()->btnOrientationVertical()
-                ->at(['122', '233'])->at('133')
-                ->atAll()->notAtAll()
-                ->send('add', $stub));
     }
 
     public function testParamsException()
@@ -42,7 +27,7 @@ class ActionCardTest extends TestCase
         $stub->method('request')->willReturn('200');
 
         try {
-            \DingRobot\Ding::actionCard('233')
+            \DingRobot\Ding::actionCardBtn('233')
                 ->text('markdown')
                 ->send('add', $stub);
         } catch (\Exception $e) {
@@ -51,8 +36,18 @@ class ActionCardTest extends TestCase
 
 
         try {
-            \DingRobot\Ding::actionCard('233')
+            \DingRobot\Ding::actionCardBtn('233')
+                ->text('fff')
+                ->appendBtn(['ni' => 1])
+                ->send('add', $stub);
+        } catch (\Exception $e) {
+            $this->assertInstanceOf(\InvalidArgumentException::class, $e);
+        }
+
+        try {
+            \DingRobot\Ding::actionCardBtn('233')
                 ->text(['ttt'])
+                ->btns(['nihao'])
                 ->send('add', $stub);
         } catch (\Exception $e) {
             $this->assertInstanceOf(\InvalidArgumentException::class, $e);

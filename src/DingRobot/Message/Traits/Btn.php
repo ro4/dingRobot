@@ -10,6 +10,11 @@ trait Btn
 
     public function btns($btns)
     {
+        if (!empty($btns) && is_array($btns)) {
+            foreach ($btns as $btn) {
+                $this->validateBtn($btn);
+            }
+        }
         $this->btns = $btns;
 
         return $this;
@@ -27,6 +32,7 @@ trait Btn
     {
         $this->validateBtn($btn);
         $this->btns[] = $btn;
+
         return $this;
     }
 

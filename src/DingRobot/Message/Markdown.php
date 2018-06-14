@@ -16,7 +16,7 @@ class Markdown extends Base
     {
         parent::__construct();
         $this->title($title);
-        $this->bodyName      = 'markdown';
+        $this->bodyName = 'markdown';
     }
 
     protected function getBody()
@@ -26,12 +26,9 @@ class Markdown extends Base
 
     protected function bodyFields()
     {
-        return ['title', 'text'];
-    }
-
-    protected function validate()
-    {
-        $this->check('title');
-        $this->check('text');
+        return [
+            'title' => ['required' => true, 'type' => 'string'],
+            'text'  => ['required' => true, 'type' => 'string']
+        ];
     }
 }

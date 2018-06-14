@@ -26,12 +26,7 @@ class Text extends Base
 
     protected function bodyFields()
     {
-        return ['content'];
-    }
-
-    protected function validate()
-    {
-        $this->check('content', true);
+        return ['content' => ['required' => true, 'type' => 'string']];
     }
 
     /**

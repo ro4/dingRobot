@@ -3,6 +3,7 @@
 namespace DingRobot;
 
 use DingRobot\Message\ActionCard;
+use DingRobot\Message\ActionCardBtn;
 use DingRobot\Message\FeedCard;
 use DingRobot\Message\Link;
 use DingRobot\Message\Markdown;
@@ -13,6 +14,11 @@ class Ding
     public static function actionCard($title = '')
     {
         return new ActionCard($title);
+    }
+
+    public static function actionCardBtn($title = '')
+    {
+        return new ActionCardBtn($title);
     }
 
     public static function feedCard($links = null)

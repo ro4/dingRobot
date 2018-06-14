@@ -37,7 +37,23 @@ abstract class Base implements \JsonSerializable
 
     abstract protected function bodyFields();
 
-    abstract protected function validate();
+    protected function validate()
+    {
+        if (empty($this->bodyFields())) {
+            return;
+        }
+        foreach ($this->bodyFields() as $field => $config) {
+            $content  = isset($this->body[$field]) ? $this->body[$field] : null;
+            $required = isset($config['required']) ? $config['required'] : null;
+            $type     = isset($config['type']) ? $config['type'] : null;
+            if ($required && !$content) {
+                throw new \InvalidArgumentException("{$field} is required");
+            }
+            if ($type == 'string' && $content && !is_string($content)) {
+                throw new \InvalidArgumentException("{$field} must be string");
+            }
+        }
+    }
 
     /**
      * 发送
@@ -58,23 +74,9 @@ abstract class Base implements \JsonSerializable
         }
     }
 
-    protected function check($name, $required = true)
-    {
-        $content = isset($this->body[$name]) ? $this->body[$name] : null;
-
-        if ($required && !$content) {
-            throw new \InvalidArgumentException("{$name} is required");
-        }
-
-        if ($content && !is_string($content)) {
-            throw new \InvalidArgumentException("{$name} must be string");
-        }
-    }
-
-
     public function __call($name, $args)
     {
-        if (in_array($name, $this->bodyFields())) {
+        if (array_key_exists($name, $this->bodyFields())) {
             $this->body[$name] = isset($args[0]) ? $args[0] : '';
         } else {
             throw new \BadMethodCallException("field {$name} not found");
