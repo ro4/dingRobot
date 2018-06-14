@@ -63,9 +63,9 @@ if (!function_exists('d_action_card_btn')) {
     /**
      * 快速生成 action_card_btn 辅助函数
      *
-     * @param string $title     标题
-     * @param string $text      markdown 格式摘要
-     * @param string $singleURL 按钮跳转地址
+     * @param string $title 标题
+     * @param string $text  markdown 格式摘要
+     * @param array  $btns  按钮
      *
      * @return \DingRobot\Message\ActionCardBtn
      */
@@ -80,7 +80,7 @@ if (!function_exists('d_feed_card')) {
     /**
      * 快速生成 action card 辅助函数
      *
-     * @param string $links 链接
+     * @param array $links 链接
      *
      * @return \DingRobot\Message\FeedCard
      */
@@ -95,9 +95,9 @@ if (!function_exists('d_link')) {
     /**
      * 快速生成 Link 辅助函数
      *
-     * @param string $title      标题
-     * @param string $text       markdown 格式摘要
-     * @param string $messageUrl 点击消息跳转的URL
+     * @param string      $title      标题
+     * @param string      $text       markdown 格式摘要
+     * @param string      $messageUrl 点击消息跳转的URL
      * @param string|null $picUrl     图片地址
      *
      * @return \DingRobot\Message\Link
