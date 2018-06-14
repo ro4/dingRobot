@@ -2,8 +2,6 @@
 
 namespace DingRobot\Message;
 
-use DingRobot\Message\Traits\Btn;
-
 /**
  * ActionCard
  *
