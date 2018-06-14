@@ -8,9 +8,9 @@ trait Btn
 
     protected static $btnFields = ['title', 'actionURL'];
 
-    public function btns($btns)
+    public function btns(array $btns)
     {
-        if (!empty($btns) && is_array($btns)) {
+        if (!empty($btns)) {
             foreach ($btns as $btn) {
                 $this->validateBtn($btn);
             }

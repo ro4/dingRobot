@@ -44,12 +44,10 @@ abstract class Base implements \JsonSerializable
         }
         foreach ($this->bodyFields() as $field => $config) {
             $content  = isset($this->body[$field]) ? $this->body[$field] : null;
-            $required = isset($config['required']) ? $config['required'] : null;
-            $type     = isset($config['type']) ? $config['type'] : null;
-            if ($required && !$content) {
+            if ($config['required'] && $content === null) {
                 throw new \InvalidArgumentException("{$field} is required");
             }
-            if ($type == 'string' && $content && !is_string($content)) {
+            if ($config['type'] == 'string' && $content && !is_string($content)) {
                 throw new \InvalidArgumentException("{$field} must be string");
             }
         }
@@ -59,18 +57,25 @@ abstract class Base implements \JsonSerializable
      * 发送
      * send
      *
-     * @param string            $address 接口地址
+     * @param string            $wen_hook 接口地址
      * @param RequesterContract $requester
      *
      * @return mixed
      */
-    public function send($address = '', RequesterContract $requester = null)
+    public function send($wen_hook = '', RequesterContract $requester = null)
     {
+        $wen_hook = $wen_hook? $wen_hook : d_web_hook();
+
+        if (!$wen_hook) {
+            throw new \InvalidArgumentException("set web hook");
+        }
+
         $this->validate();
+
         if ($requester) {
-            return $requester->request($address, json_encode($this->jsonSerialize()));
+            return $requester->request($wen_hook, json_encode($this->jsonSerialize()));
         } else {
-            return (new CurlRequester())->request($address, json_encode($this->jsonSerialize()));
+            return (new CurlRequester())->request($wen_hook, json_encode($this->jsonSerialize()));
         }
     }
 

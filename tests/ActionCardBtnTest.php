@@ -11,8 +11,8 @@ class ActionCardBtnTest extends TestCase
         $stub->method('request')->willReturn('200');
 
         $this->assertEquals('200', \DingRobot\Ding::actionCardBtn('233')->text('ffff')
-            ->btns([make_btn('ff', 'eee')])
-            ->appendBtn(make_btn('ee', 'dfd'))
+            ->btns([d_make_btn('ff', 'eee')])
+            ->appendBtn(d_make_btn('ee', 'dfd'))
             ->showAvatar()->hideAvatar()
             ->btnOrientationHorizontal()->btnOrientationVertical()
             ->at(['122', '233'])->at('133')
