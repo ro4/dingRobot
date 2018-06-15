@@ -1,7 +1,5 @@
-[TOC]
-
 # dingRobot
-钉钉机器人 PHP 库
+钉钉机器人 PHP 库  
 [![Build Status](https://travis-ci.org/ro4/dingRobot.svg?branch=master)](https://travis-ci.org/ro4/dingRobot)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ro4/dingRobot/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ro4/dingRobot/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/ro4/dingRobot/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/ro4/dingRobot/?branch=master)
