@@ -54,8 +54,10 @@ trait At
     {
         if (count($this->mobiles) || $this->all) {
             return [
-                'atMobiles' => $this->mobiles,
-                'isAtAll'   => $this->all,
+                'at' => [
+                    'atMobiles' => $this->mobiles,
+                    'isAtAll'   => $this->all,
+                ]
             ];
         } else {
             return [];
