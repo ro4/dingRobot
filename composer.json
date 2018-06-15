@@ -1,6 +1,6 @@
 {
     "name": "ro4/ding-robot",
-    "description": "A php library for ding ding group robot",
+    "description": "A php library for ding ding group robot. 订单机器人库",
     "type": "library",
     "license": "MIT",
     "authors": [
